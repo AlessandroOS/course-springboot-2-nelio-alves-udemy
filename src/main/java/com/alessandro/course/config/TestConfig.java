@@ -9,10 +9,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.alessandro.course.entities.Category;
 import com.alessandro.course.entities.Order;
+import com.alessandro.course.entities.Product;
 import com.alessandro.course.entities.User;
 import com.alessandro.course.entities.enums.OrderStatus;
 import com.alessandro.course.repositories.CategoryRepository;
 import com.alessandro.course.repositories.OrderRepository;
+import com.alessandro.course.repositories.ProductRepository;
 import com.alessandro.course.repositories.UserRepository;
 
 @Configuration
@@ -27,6 +29,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -42,6 +47,12 @@ public class TestConfig implements CommandLineRunner{
 		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
 		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u1);
 		
+		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+		Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+		
 		userRepository.save(u1);
 		userRepository.save(u2);
 		
@@ -52,6 +63,12 @@ public class TestConfig implements CommandLineRunner{
 		categoryRepository.save(cat1);
 		categoryRepository.save(cat2);
 		categoryRepository.save(cat3);
+		
+		productRepository.save(p1);
+		productRepository.save(p2);
+		productRepository.save(p3);
+		productRepository.save(p4);
+		productRepository.save(p5);
 	}
 
 }
